@@ -29,3 +29,4 @@ jobs:
       secrets:
         VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
         MONGO_URI: ${{ secrets.MONGO_URI }}
+        
