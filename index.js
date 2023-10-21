@@ -12,7 +12,7 @@ const port = 5000;
 app.use(cors());
 
 app.get('/', (req,res) => {
-    res.send("hello world");
+    res.send("teste vercel");
 })
 
 ConnectDataBase(); //Conectando o banco de dados
