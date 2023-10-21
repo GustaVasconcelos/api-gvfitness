@@ -19,3 +19,4 @@ router.patch('/', authMiddleware, update);
 router.delete('/:id', validId, validUser, destroy);
 
 export default router;
+
