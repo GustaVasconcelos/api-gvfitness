@@ -3,17 +3,17 @@ import dotenv from 'dotenv';
 import ConnectDataBase from './src/dataBase/db.js';
 import cors from 'cors';
 
+import userRouter from './src/routes/user.routes.js'
 
 dotenv.config();
 
 const app = express();
 const port = 5000;
 
+app.use(express.json());
 app.use(cors());
 
-app.get('/', (req,res) => {
-    res.send("teste vercel");
-})
+app.use("/user", userRouter);
 
 ConnectDataBase(); //Conectando o banco de dados
 

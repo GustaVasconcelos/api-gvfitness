@@ -40,3 +40,4 @@ jobs:
           vercel deploy --prod --yes --token ${{ secrets.VERCEL_TOKEN }} \
             -e PORT=${{ needs.build.outputs.service-port }} \
             -e MONGO_URI=${{ secrets.MONGO_URI }}
+            -e SECRET_JWT=${{ secrets.SECRET_JWT }}
