@@ -1,6 +1,7 @@
 {
     "scripts": {
-        "dev": "nodemon index"
+        "dev": "nodemon index",
+        "build": "echo 'No build script defined'"
     },
     "dependencies": {
         "cors": "^2.8.5",
