@@ -9,24 +9,34 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
-      - name: Using Node.js
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Setup Node.js
         uses: actions/setup-node@v2
         with:
-          node-version: 18.x
-      - name: run install, build and test
+          node-version: 14
+
+      - name: Install dependencies, build, and test
         run: |
           npm install
           npm run build
           npm run test
-        
+
   deploy:
-      uses: ./.github/workflows/deploy.yml
-      if: github.ref == 'refs/heads/main'
-      needs: build
-      with:
-        service-port: 5000
-      secrets:
-        VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
-        MONGO_URI: ${{ secrets.MONGO_URI }}
-        
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Install Vercel CLI
+        run: npm install -g vercel
+
+      - name: Deploy to Vercel
+        run: |
+          vercel pull --yes --environment=preview --token ${{ secrets.VERCEL_TOKEN }}
+          vercel build --token ${{ secrets.VERCEL_TOKEN }}
+          vercel deploy --prod --yes --token ${{ secrets.VERCEL_TOKEN }} \
+            -e PORT=${{ needs.build.outputs.service-port }} \
+            -e MONGO_URI=${{ secrets.MONGO_URI }}
