@@ -20,3 +20,12 @@ jobs:
           npm run build
           npm run test
         
+    deploy:
+        uses: ./.github/workflows/deploy.yml
+        if: github.ref == 'refs/heads/main'
+        needs: build
+        with:
+          service-port: 5000
+        secrets:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+          MONGO_URI: ${{ secrets.MONGO_URI }}
