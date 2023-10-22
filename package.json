@@ -1,6 +1,6 @@
 {
     "scripts": {
-        "test": "echo 'No test script defined'",
+        "test": "jest --passWithNoTests",
         "dev": "nodemon index",
         "build": "echo 'No build script defined'"
     },
@@ -17,5 +17,12 @@
         "validator": "^13.11.0",
         "vercel": "^32.5.0"
     },
-    "type": "module"
+    "type": "module",
+    "devDependencies": {
+        "@babel/plugin-transform-modules-commonjs": "^7.23.0",
+        "@babel/preset-env": "^7.23.2",
+        "babel-core": "^7.0.0-bridge.0",
+        "jest": "^29.7.0",
+        "supertest": "^6.3.3"
+    }
 }
