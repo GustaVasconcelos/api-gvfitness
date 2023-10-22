@@ -3,7 +3,6 @@ import { createService, findEmailService, findCpfService } from '../../services/
 import validator from "validator";
 import { cpf as cpfValidator } from 'cpf-cnpj-validator';
 
-// Mockando o módulo de serviços
 jest.mock('../../services/user.services.js');
 
 describe("Create User Tests", () => {
@@ -13,7 +12,6 @@ describe("Create User Tests", () => {
     });
 
     test("Should return an error when there are empty fields", async () => {
-
         const request = {
             body: {
                 name: "", 
@@ -36,36 +34,29 @@ describe("Create User Tests", () => {
         expect(createService).not.toHaveBeenCalled();
         expect(response.status).toHaveBeenCalledWith(400);
         expect(response.json).toHaveBeenCalledWith({ "error": "Há campos vazios!" });
-    
     });
 
     test("should check if the email is valid", () => {
-
         const validEmail = "lucia@teste.com";
     
         const isValidEmail = validator.isEmail(validEmail);
     
         expect(isValidEmail).toBe(true);
-    
     });
 
     test("should check if the email is not valid", () => {
-
         const validEmail = "invalid-email";
     
         const isValidEmail = validator.isEmail(validEmail);
     
         expect(isValidEmail).toBe(false);
-    
     });
 
     test("must return an error when email already exists in the database", async () => {
-        const existingEmail = "existing@teste.com";
-    
         const request = {
             body: {
                 name: "Lucia",
-                email: existingEmail,
+                email: "existing@teste.com",
                 cpf: "901.338.624-53",
                 password: "test1",
                 confirmPassword: "test1"
@@ -81,19 +72,17 @@ describe("Create User Tests", () => {
     
         await create(request, response);
     
-        expect(findEmailService).toHaveBeenCalledWith(existingEmail);
+        expect(findEmailService).toHaveBeenCalledWith(request.body.email);
         expect(response.status).toHaveBeenCalledWith(400);
         expect(response.json).toHaveBeenCalledWith({ "error": "Email já cadastrado!" });
     });
 
     test("must return an error when cpf already exists in the database", async () => {
-        const existingCpf = "901.338.624-53";
-    
         const request = {
             body: {
                 name: "Lucia",
                 email: "lucia@teste.com",
-                cpf: existingCpf,
+                cpf: "901.338.624-53",
                 password: "test1",
                 confirmPassword: "test1"
             }
@@ -108,29 +97,25 @@ describe("Create User Tests", () => {
     
         await create(request, response);
     
-        expect(findCpfService).toHaveBeenCalledWith(existingCpf);
+        expect(findCpfService).toHaveBeenCalledWith(request.body.cpf);
         expect(response.status).toHaveBeenCalledWith(400);
         expect(response.json).toHaveBeenCalledWith({ "error": "CPF já cadastrado!" });
     });
 
     test("should check if the cpf is valid", () => {
-
         const validCpf = "901.338.624-53";
     
         const isValidCpf = cpfValidator.isValid(validCpf);
     
         expect(isValidCpf).toBe(true);
-    
     });
 
     test("should return an error if passwords are different", () => {
-
         const validCpf = "901.338.624-53";
     
         const isValidCpf = cpfValidator.isValid(validCpf);
     
         expect(isValidCpf).toBe(true);
-    
     });
 
     test("must return an error when passwords do not match", async () => {
@@ -172,7 +157,6 @@ describe("Create User Tests", () => {
             json: jest.fn()
         }
         
-        
         await create(request, response);
 
         expect(createService).toHaveBeenCalledTimes(1);
@@ -181,7 +165,6 @@ describe("Create User Tests", () => {
     })
 
     test("It should return an error when not registering the user", async () => {
-
         const request = {
             body: {
                 name: "Lucia",
