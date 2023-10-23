@@ -33,7 +33,7 @@ describe("Find users test", () => {
             json: jest.fn()
         }
 
-        findService.mockRejectedValue(new Error("Mocking exception"));;
+        findService.mockRejectedValue(new Error("Mocking exception"));
         
         await find(request, response);
 
@@ -56,5 +56,5 @@ describe("Find users test", () => {
         expect(findService).toHaveBeenCalledTimes(1)
         expect(response.status).toHaveBeenCalledWith(404);
     });
-    
+
 });
