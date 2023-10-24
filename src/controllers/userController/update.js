@@ -1,13 +1,7 @@
 import validator from "validator";
 import { cpf as cpfValidator } from 'cpf-cnpj-validator';
 import { findUserIdService, findCpfService, findEmailService, updateUserService } from "../../services/user.services.js";
-
-const INVALID_FIELD_MESSAGE = "Edite pelo menos um campo";
-const INVALID_EMAIL_MESSAGE = "Email inválido!";
-const INVALID_CPF_MESSAGE = "CPF inválido!";
-const EMAIL_EXISTS_MESSAGE = "Email já cadastrado!";
-const CPF_EXISTS_MESSAGE = "CPF já cadastrado!";
-const SUCCESS_MESSAGE = "Dados alterados!";
+import { INVALID_CPF_MESSAGE, INVALID_EMAIL_MESSAGE, CPF_EXISTS_MESSAGE, EMAIL_EXISTS_MESSAGE, SUCCESS_MESSAGE_UPDATE, INVALID_FIELD_MESSAGE } from "../../messages/messages.js";
 
 const update = async (req, res) => {
     try {
@@ -46,7 +40,7 @@ const update = async (req, res) => {
 
         await updateUserService(user.id, updatedName, updatedEmail, updatedCpf);
 
-        return res.status(200).json({ "message": SUCCESS_MESSAGE });
+        return res.status(200).json({ "message": SUCCESS_MESSAGE_UPDATE });
     } catch (err) {
         return res.status(500).json({ "error": err.message });
     }

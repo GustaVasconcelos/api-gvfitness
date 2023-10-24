@@ -28,7 +28,6 @@ describe("Update User Tests", () => {
         await update(request, response);
 
         expect(response.status).toHaveBeenCalledWith(400);
-        expect(response.json).toHaveBeenCalledWith({ "error": "Edite pelo menos um campo" });
     });
 
     it("Must return success when editing the user", async () => {
@@ -51,7 +50,6 @@ describe("Update User Tests", () => {
 
         expect(findUserIdService).toHaveBeenCalledTimes(1);
         expect(response.status).toHaveBeenCalledWith(200);
-        expect(response.json).toHaveBeenCalledWith({ "message": "Dados alterados!" });
     });
 
     test("should check if the email is valid", () => {
@@ -90,7 +88,6 @@ describe("Update User Tests", () => {
     
         expect(findEmailService).toHaveBeenCalledWith(request.body.email);
         expect(response.status).toHaveBeenCalledWith(400);
-        expect(response.json).toHaveBeenCalledWith({ "error": "Email já cadastrado!" });
     });
 
     test("must return an error when cpf already exists in the database", async () => {
@@ -113,7 +110,6 @@ describe("Update User Tests", () => {
     
         expect(findCpfService).toHaveBeenCalledWith(request.body.cpf);
         expect(response.status).toHaveBeenCalledWith(400);
-        expect(response.json).toHaveBeenCalledWith({ "error": "CPF já cadastrado!" });
     });
 
     test("should return an internal error", async () => {

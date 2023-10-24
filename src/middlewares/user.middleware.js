@@ -1,8 +1,7 @@
 import mongoose from 'mongoose';
 import { findUserIdService } from '../services/user.services.js';
+export {INVALID_ID_MESSAGE, USER_NOT_FOUND_MESSAGE } from '../messages/messages.js'
 
-const INVALID_ID_MESSAGE = 'Id inválido!';
-const USER_NOT_FOUND_MESSAGE = 'Usuário não foi encontrado';
 
 const validId = (req, res, next) => {
     const id = req.params.id;

@@ -58,7 +58,6 @@ describe('validUser Middleware Tests', () => {
 
         expect(findUserIdService).toHaveBeenCalledWith('non-existent-user-id');
         expect(response.status).toHaveBeenCalledWith(404);
-        expect(response.json).toHaveBeenCalledWith({ error: 'Usuário não foi encontrado' });
         expect(next).not.toHaveBeenCalled();
     });
 

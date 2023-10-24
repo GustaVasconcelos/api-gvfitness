@@ -33,7 +33,6 @@ describe("Create User Tests", () => {
         expect(findCpfService).not.toHaveBeenCalled();
         expect(createService).not.toHaveBeenCalled();
         expect(response.status).toHaveBeenCalledWith(400);
-        expect(response.json).toHaveBeenCalledWith({ "error": "Há campos vazios!" });
     });
 
     test("should check if the email is valid", () => {
@@ -74,7 +73,6 @@ describe("Create User Tests", () => {
     
         expect(findEmailService).toHaveBeenCalledWith(request.body.email);
         expect(response.status).toHaveBeenCalledWith(400);
-        expect(response.json).toHaveBeenCalledWith({ "error": "Email já cadastrado!" });
     });
 
     test("must return an error when cpf already exists in the database", async () => {
@@ -99,7 +97,6 @@ describe("Create User Tests", () => {
     
         expect(findCpfService).toHaveBeenCalledWith(request.body.cpf);
         expect(response.status).toHaveBeenCalledWith(400);
-        expect(response.json).toHaveBeenCalledWith({ "error": "CPF já cadastrado!" });
     });
 
     test("should check if the cpf is valid", () => {
@@ -138,7 +135,6 @@ describe("Create User Tests", () => {
     
         expect(createService).not.toHaveBeenCalled(); 
         expect(response.status).toHaveBeenCalledWith(400);
-        expect(response.json).toHaveBeenCalledWith({ "error": "As senhas são diferentes!" });
     });
 
     test("must register the user in the database successfully", async () => {

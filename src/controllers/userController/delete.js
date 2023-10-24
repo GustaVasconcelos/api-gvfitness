@@ -1,11 +1,9 @@
 import { deleteUserService } from "../../services/user.services.js"
+import { EMPTY_FIELDS_MESSAGE, SUCCESS_MESSAGE_DELETE } from "../../messages/messages.js";
 
-const SUCCESS_MESSAGE = "Usuário deletado";
 /**
  * Deleta o usuário com o id passado.
  */
-
-const EMPTY_FIELDS_MESSAGE = "Há campos vazios!";
 
 const destroy = async (req, res) => {
 
@@ -18,7 +16,7 @@ const destroy = async (req, res) => {
     try {
         await deleteUserService(userId);
 
-        return res.status(200).json({ "message": SUCCESS_MESSAGE });
+        return res.status(200).json({ "message": SUCCESS_MESSAGE_DELETE });
 
     } catch (err) {
         return res.status(500).json({ "error":err.message })

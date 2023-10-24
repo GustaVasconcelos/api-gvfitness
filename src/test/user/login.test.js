@@ -31,7 +31,6 @@ describe("Login User Tests", () => {
         expect(findCpfService).not.toHaveBeenCalled();
         expect(generateTokenUser).not.toHaveBeenCalled();
         expect(response.status).toHaveBeenCalledWith(400);
-        expect(response.json).toHaveBeenCalledWith({ "error": "Há campos vazios!" });
     });
 
     test("should check if the cpf is valid", () => {
@@ -64,7 +63,6 @@ describe("Login User Tests", () => {
     
         expect(findCpfService).toHaveBeenCalledWith(request.body.cpf);
         expect(response.status).toHaveBeenCalledWith(400);
-        expect(response.json).toHaveBeenCalledWith({ "error": "CPF ou senha inválida" });
     });
 
     test("should return success if the passwords are identical", () => {

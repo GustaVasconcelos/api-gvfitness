@@ -1,14 +1,7 @@
 import { createService, findCpfService, findEmailService } from "../../services/user.services.js";
 import validator from "validator";
 import { cpf as cpfValidator } from 'cpf-cnpj-validator';
-
-const EMPTY_FIELDS_MESSAGE = "Há campos vazios!";
-const PASSWORD_MISMATCH_MESSAGE = "As senhas são diferentes!";
-const INVALID_EMAIL_MESSAGE = "Email inválido!";
-const INVALID_CPF_MESSAGE = "CPF inválido!";
-const EMAIL_EXISTS_MESSAGE = "Email já cadastrado!";
-const CPF_EXISTS_MESSAGE = "CPF já cadastrado!";
-const SUCCESS_MESSAGE = "Usuário cadastrado!";
+import { EMPTY_FIELDS_MESSAGE, PASSWORD_MISMATCH_MESSAGE, INVALID_CPF_MESSAGE, INVALID_EMAIL_MESSAGE, EMAIL_EXISTS_MESSAGE, CPF_EXISTS_MESSAGE, SUCCESS_MESSAGE_CREATE } from "../../messages/messages.js";
 
 /**
  * Registra o usuário.
