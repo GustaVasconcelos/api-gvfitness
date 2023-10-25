@@ -8,8 +8,9 @@ import jwt from 'jsonwebtoken'
  * @param {string} permission - Permissão do usuário.
  * @returns {string} - O token JWT gerado.
  */
-const generateTokenUser = (id, cpf, email, permission) => jwt.sign({
+const generateTokenUser = (id, name, cpf, email, permission) => jwt.sign({
     id,
+    name,
     cpf,
     email,
     permission

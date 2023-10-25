@@ -32,7 +32,7 @@ const login = async (req, res) => {
             return res.status(400).json({ error: INVALID_CREDENTIALS_MESSAGE });
         }
 
-        const token = generateTokenUser(user._id, user.cpf, user.email, user.permission);
+        const token = generateTokenUser(user._id, user.name ,user.cpf, user.email, user.permission);
 
         return res.status(200).json({ token });
     } catch (err) {
