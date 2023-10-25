@@ -12,7 +12,7 @@ const router = Router();
 
 router.get("/", find);
 router.get("/trainingSheet/:id", validId, validTrainingSheet, findAllItemsTrainingSheet)
-router.post("/:id", validId, create);
+router.post("/:id", validId, validTrainingSheet, create);
 router.delete("/:id", validId, validItemTrainingSheet, destroy);
 router.patch("/:id", validId, validItemTrainingSheet, update);
 
