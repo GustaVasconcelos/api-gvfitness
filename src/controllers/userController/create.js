@@ -40,7 +40,7 @@ const create = async (req, res) => {
 
         await createService(req.body);
 
-        return res.status(201).json({ message: SUCCESS_MESSAGE });
+        return res.status(201).json({ message: SUCCESS_MESSAGE_CREATE });
     } catch (err) {
         return res.status(500).json({ error: err.message });
     }
