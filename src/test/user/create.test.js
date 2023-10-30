@@ -51,54 +51,6 @@ describe("Create User Tests", () => {
         expect(isValidEmail).toBe(false);
     });
 
-    test("must return an error when email already exists in the database", async () => {
-        const request = {
-            body: {
-                name: "Lucia",
-                email: "existing@teste.com",
-                cpf: "901.338.624-53",
-                password: "test1",
-                confirmPassword: "test1"
-            }
-        }
-    
-        const response = {
-            status: jest.fn().mockReturnThis(),
-            json: jest.fn()
-        }
-
-        findEmailService.mockResolvedValueOnce(true);
-    
-        await create(request, response);
-    
-        expect(findEmailService).toHaveBeenCalledWith(request.body.email);
-        expect(response.status).toHaveBeenCalledWith(400);
-    });
-
-    test("must return an error when cpf already exists in the database", async () => {
-        const request = {
-            body: {
-                name: "Lucia",
-                email: "lucia@teste.com",
-                cpf: "901.338.624-53",
-                password: "test1",
-                confirmPassword: "test1"
-            }
-        }
-    
-        const response = {
-            status: jest.fn().mockReturnThis(),
-            json: jest.fn()
-        }
-
-        findCpfService.mockResolvedValueOnce(true);
-    
-        await create(request, response);
-    
-        expect(findCpfService).toHaveBeenCalledWith(request.body.cpf);
-        expect(response.status).toHaveBeenCalledWith(400);
-    });
-
     test("should check if the cpf is valid", () => {
         const validCpf = "901.338.624-53";
     

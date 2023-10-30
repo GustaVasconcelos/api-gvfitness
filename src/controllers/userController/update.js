@@ -12,28 +12,6 @@ const update = async (req, res) => {
             return res.status(400).json({ "error": INVALID_FIELD_MESSAGE });
         }
 
-        if (email && !validator.isEmail(email)) {
-            return res.status(400).json({ "error": INVALID_EMAIL_MESSAGE });
-        }
-
-        if (cpf && !cpfValidator.isValid(cpf)) {
-            return res.status(400).json({ "error": INVALID_CPF_MESSAGE });
-        }
-
-        if (email) {
-            const emailIsUnique = await findEmailService(email);
-            if (emailIsUnique) {
-                return res.status(400).json({ "error": EMAIL_EXISTS_MESSAGE });
-            }
-        }
-
-        if (cpf) {
-            const cpfIsUnique = await findCpfService(cpf);
-            if (cpfIsUnique) {
-                return res.status(400).json({ "error": CPF_EXISTS_MESSAGE });
-            }
-        }
-
         const updatedName = name || user.name;
         const updatedEmail = email || user.email;
         const updatedCpf = cpf || user.cpf;
